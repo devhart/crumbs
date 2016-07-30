@@ -33,6 +33,12 @@ export default class extends Component {
       }
     });
 
+    this.props.route.socket.on('room:created', result => {
+      if (result.location === this.state.location) {
+        this.setState({ exists: result.room });
+      }
+    });
+
     this.props.route.socket.on('message:added', result => {
       if (result.location === this.state.location) {
         const messages = this.state.room.messages;
@@ -48,7 +54,6 @@ export default class extends Component {
       browserHistory.push('/roaming');
     }
 
-    this.checkRoom();
     // TODO: Handle navigator errors.
     navigator.geolocation.getCurrentPosition(this.setPosition);
     this.watchID = navigator.geolocation.watchPosition(this.setPosition);

@@ -2,15 +2,7 @@ import React, { Component, cloneElement } from 'react';
 import { browserHistory } from 'react-router';
 import { Jumbotron, Button } from 'react-bootstrap';
 
-const appStyle = {
-  margin: 'auto auto',
-  width: '80%',
-  height: '100%',
-  border: '1px solid black',
-  padding: '7%',
-  textAlign: 'center',
-  background: '#CCC',
-};
+import s from './home.css';
 
 export default class extends Component {
   constructor(props) {
@@ -103,7 +95,7 @@ export default class extends Component {
   render() {
     const childProps = Object.assign({}, this.handlers, this.state);
     return (
-      <div style={appStyle}>
+      <div className={s.app}>
         <Button style={{ float: 'right' }} bsStyle="link" onClick={this.logout}>
           Logout
         </Button>
